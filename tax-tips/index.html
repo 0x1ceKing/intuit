@@ -1,1 +1,102 @@
-Khong La Gi Ca
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>0x1ceking - hack the planet</title>
+<style>
+*{box-sizing:border-box;margin:0}
+body{
+ height:100vh;display:grid;place-items:center;
+ background:#05070a;color:#00ffe1;font:16px monospace;
+ overflow:hidden
+}
+canvas{position:fixed;inset:0;opacity:.28}
+body:after{
+ content:"";position:fixed;inset:0;pointer-events:none;
+ background:repeating-linear-gradient(0deg,#00ffe103 0 1px,transparent 1px 4px)
+}
+.card{
+ z-index:1;position:relative;text-align:center;
+ padding:55px 75px;background:#05080dcc;
+ border:1px solid #00ffe133;border-radius:18px;
+ box-shadow:0 0 60px #00ffe11a,inset 0 0 30px #00ffe108;
+ backdrop-filter:blur(8px)
+}
+.card:before,.card:after{
+ content:"";position:absolute;width:25px;height:25px;
+ border-color:#00ffe1;border-style:solid;opacity:.7
+}
+.card:before{top:-1px;left:-1px;border-width:2px 0 0 2px}
+.card:after{right:-1px;bottom:-1px;border-width:0 2px 2px 0}
+h1{
+ font-size:4rem;letter-spacing:6px;
+ text-shadow:0 0 10px #00ffe1,0 0 30px #00ffe166;
+ animation:g 2s infinite
+}
+.tag{
+ margin-top:20px;padding-top:18px;
+ border-top:1px solid #00ffe122;
+ color:#00ffe180;letter-spacing:5px;
+ text-transform:uppercase
+}
+.tag b{color:#ff3b9e;text-shadow:0 0 15px #ff3b9e}
+.status{
+ margin-top:25px;font-size:11px;
+ color:#00ffe155;letter-spacing:2px
+}
+.status i{
+ display:inline-block;width:7px;height:7px;
+ background:#00ffe1;border-radius:50%;
+ box-shadow:0 0 10px #00ffe1;
+ margin-right:7px
+}
+@keyframes g{
+ 0%,90%,100%{transform:none}
+ 92%{transform:translate(-2px,1px)}
+ 94%{transform:translate(2px,-1px)}
+}
+@media(max-width:600px){
+ .card{padding:40px 25px}
+ h1{font-size:2rem;letter-spacing:3px}
+ .tag{font-size:.7rem;letter-spacing:3px}
+}
+</style>
+</head>
+
+<body>
+<canvas id="m"></canvas>
+
+<div class="card">
+ <h1>0x1ceking</h1>
+ <div class="tag">⧩ &nbsp; <b>hack the planet</b> &nbsp; ⧩</div>
+ <div class="status"><i></i>SYSTEM ONLINE // 0x1CEKING</div>
+</div>
+
+<script>
+alert("0x1ceking");
+
+const c=document.getElementById("m"),x=c.getContext("2d"),s=18,ch="0123456789ABCDEF";
+let d;
+
+function resize(){
+ c.width=innerWidth;c.height=innerHeight;
+ d=Array(Math.ceil(c.width/s)).fill(0)
+}
+function draw(){
+ x.fillStyle="#05070a18";
+ x.fillRect(0,0,c.width,c.height);
+ x.fillStyle="#00ffe1";
+ x.font=s+"px monospace";
+ d.forEach((y,i)=>{
+  x.fillText(ch[Math.random()*ch.length|0],i*s,y*s);
+  d[i]=y*s>c.height&&Math.random()>.97?0:y+1
+ });
+ requestAnimationFrame(draw)
+}
+onresize=resize;
+resize();
+draw();
+</script>
+</body>
+</html>
